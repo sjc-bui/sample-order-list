@@ -8,7 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
   var tableView: UITableView!
   var sections: [String] = ["きしめん家", "とんかつ家"]
   var meat   = ["1　とんかつ定食", "2　唐揚げ定食", ""]
@@ -21,46 +20,103 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .white
+    
+    let innerView = UIView()
     tableView = UITableView(frame: .zero, style: .grouped)
     tableView.delegate = self
     tableView.dataSource = self
 
-    let innerView = UIView()
-    innerView.backgroundColor = .systemBlue
-    view.addSubview(innerView)
+    view.addSubview(scrollView)
+    scrollView.addSubview(scrollViewContainer)
+    scrollViewContainer.addArrangedSubview(innerView)
+    scrollViewContainer.addArrangedSubview(tableView)
+    scrollViewContainer.addArrangedSubview(greenView)
 
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "c")
     tableView.register(ItemCell.self, forCellReuseIdentifier: "cell")
     tableView.register(SubTotalCell.self, forCellReuseIdentifier: "sub")
     tableView.register(HeaderCell.self, forCellReuseIdentifier: "header")
-    view.addSubview(tableView)
 
-    // Layout
+    scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+    scrollViewContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+    scrollViewContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+    scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+    scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+    scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+
     innerView.translatesAutoresizingMaskIntoConstraints = false
-    tableView.translatesAutoresizingMaskIntoConstraints = false
+    innerView.backgroundColor = .systemBlue
     NSLayoutConstraint.activate([
-      innerView.topAnchor.constraint(equalTo: view.topAnchor),
-      innerView.leftAnchor.constraint(equalTo: view.leftAnchor),
-      innerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+      innerView.topAnchor.constraint(equalTo: scrollViewContainer.topAnchor),
+      innerView.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor),
+      innerView.rightAnchor.constraint(equalTo: scrollViewContainer.rightAnchor),
       innerView.heightAnchor.constraint(equalToConstant: 150),
 
       tableView.topAnchor.constraint(equalTo: innerView.bottomAnchor),
-      tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      tableView.leftAnchor.constraint(equalTo: view.leftAnchor)
+      tableView.rightAnchor.constraint(equalTo: scrollViewContainer.rightAnchor),
+      tableView.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor),
+      tableView.heightAnchor.constraint(equalToConstant: 600)
     ])
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-      self.meat.remove(at: 0)
-      self.meatOptions.remove(at: 0)
-      self.tableView.reloadData()
-    }
-    DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-      self.noodle.insert("3　タンメン", at: 1)
-      self.noodleOpt.insert(["ご飯大"], at: 1)
-      self.tableView.reloadData()
-    }
+
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//      self.meat.remove(at: 0)
+//      self.meatOptions.remove(at: 0)
+//      self.tableView.reloadData()
+//    }
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+//      self.noodle.insert("3　タンメン", at: 1)
+//      self.noodleOpt.insert(["ご飯大"], at: 1)
+//      self.tableView.reloadData()
+//    }
   }
+
+  override func viewDidAppear(_ animated: Bool) {
+    print("TableView height: \(tableView.contentSize.height)")
+    tableView.isScrollEnabled = false;
+  }
+
+  let scrollView: UIScrollView = {
+      let scrollView = UIScrollView()
+
+      scrollView.translatesAutoresizingMaskIntoConstraints = false
+      return scrollView
+  }()
+
+  let scrollViewContainer: UIStackView = {
+      let view = UIStackView()
+
+      view.axis = .vertical
+      view.spacing = 10
+
+      view.translatesAutoresizingMaskIntoConstraints = false
+      return view
+  }()
+
+  let redView: UIView = {
+      let view = UIView()
+      view.heightAnchor.constraint(equalToConstant: 500).isActive = true
+      view.backgroundColor = .red
+      return view
+  }()
+
+  let blueView: UIView = {
+      let view = UIView()
+      view.heightAnchor.constraint(equalToConstant: 200).isActive = true
+      view.backgroundColor = .blue
+      return view
+  }()
+
+  let greenView: UIView = {
+      let view = UIView()
+      view.heightAnchor.constraint(equalToConstant: 300).isActive = true
+      view.backgroundColor = .green
+      return view
+  }()
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
