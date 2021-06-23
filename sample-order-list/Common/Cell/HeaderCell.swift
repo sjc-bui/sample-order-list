@@ -7,17 +7,24 @@
 
 import UIKit
 
-class HeaderCell: UITableViewCell {
+class HeaderCell: BaseViewCell {
 
-  let titleLabel = PaddingLabel(withInsets: 4, 8, 4, 8)
-
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    commonInit()
+  var title: String? {
+    didSet {
+      titleLabel.text = title
+    }
   }
 
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
+  private let titleLabel: PaddingLabel = {
+    let label = PaddingLabel(withInsets: 4, 8, 4, 8)
+    label.textColor = .white
+    label.layer.backgroundColor = UIColor.black.withAlphaComponent(0.2).cgColor
+    label.layer.cornerRadius = 18
+    label.font = UIFont.systemFont(ofSize: 18)
+    return label
+  }()
+
+  override func initialize() {
     commonInit()
   }
 
@@ -27,15 +34,10 @@ class HeaderCell: UITableViewCell {
   }
 
   func commonInit() {
-    titleLabel.textColor = .white
-    titleLabel.layer.backgroundColor = UIColor.black.withAlphaComponent(0.2).cgColor
-    titleLabel.layer.cornerRadius = 18
-    titleLabel.font = UIFont.systemFont(ofSize: 18)
-
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     contentView.addSubview(titleLabel)
-    titleLabel.sizeToFit()
 
+    titleLabel.sizeToFit()
     titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 3).isActive = true
     titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
     titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3).isActive = true

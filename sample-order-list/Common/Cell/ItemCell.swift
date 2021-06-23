@@ -7,24 +7,84 @@
 
 import UIKit
 
-class ItemCell: UITableViewCell {
+class ItemCell: BaseViewCell {
 
-  let titleLabel = UILabel()
-  let stackView = UIStackView()
-  let itemPrice = UILabel()
-  let quantity = UILabel()
-  let total = UILabel()
-  
-  let button = UIButton()
-
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-      super.init(style: style, reuseIdentifier: reuseIdentifier)
-      commonInit()
+  var title: String? {
+    didSet {
+      titleLabel.text = title
+    }
   }
 
-  required init?(coder aDecoder: NSCoder) {
-      super.init(coder: aDecoder)
-      commonInit()
+  var price: String? {
+    didSet {
+      priceLabel.text = price
+    }
+  }
+
+  var quantity: String? {
+    didSet {
+      quantityLabel.text = quantity
+    }
+  }
+
+  var total: String? {
+    didSet {
+      totalLabel.text = total
+    }
+  }
+  
+  private let titleLabel: UILabel = {
+    let label = UILabel()
+    label.numberOfLines = 1
+    label.font = UIFont.systemFont(ofSize: 20)
+    return label
+  }()
+
+  private let priceLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .gray
+    label.font = UIFont.systemFont(ofSize: 20)
+    return label
+  }()
+
+  private let quantityLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .gray
+    label.textAlignment = .center
+    label.font = UIFont.systemFont(ofSize: 20)
+    return label
+  }()
+  
+  private let totalLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = .gray
+    label.textAlignment = .right
+    label.font = UIFont.systemFont(ofSize: 20)
+    return label
+  }()
+
+  private lazy var priceStack: UIStackView = {
+    let stack = UIStackView()
+    stack.axis = .horizontal
+    stack.distribution = .fillEqually
+    stack.alignment = .fill
+    stack.spacing = 2
+    return stack
+  }()
+
+  private lazy var stackView: UIStackView = {
+    let stack = UIStackView()
+    stack.axis = .vertical
+    stack.distribution = .fillEqually
+    stack.alignment = .fill
+    stack.spacing = 2
+    return stack
+  }()
+
+  let button = UIButton()
+
+  override func initialize() {
+    commonInit()
   }
 
   var completion: (() -> Void)? = nil
@@ -35,7 +95,6 @@ class ItemCell: UITableViewCell {
   func commonInit() {
     titleLabel.translatesAutoresizingMaskIntoConstraints = false
     button.translatesAutoresizingMaskIntoConstraints = false
-    titleLabel.font = UIFont.systemFont(ofSize: 20)
     contentView.isUserInteractionEnabled = true
 
     addSubview(titleLabel)
@@ -48,10 +107,6 @@ class ItemCell: UITableViewCell {
     button.layer.cornerRadius = 15
     button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
-    stackView.axis = .vertical
-    stackView.distribution = .fillEqually
-    stackView.alignment = .fill
-    stackView.spacing = 2
     stackView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(stackView)
 
@@ -62,7 +117,7 @@ class ItemCell: UITableViewCell {
 
     button.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
     button.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
-    button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+    button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
     button.widthAnchor.constraint(equalToConstant: 80).isActive = true
     button.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
@@ -83,27 +138,9 @@ class ItemCell: UITableViewCell {
     }
 
     if !names.isEmpty {
-      let priceStack = UIStackView()
-      priceStack.axis = .horizontal
-      priceStack.distribution = .fillEqually
-      priceStack.alignment = .fill
-      priceStack.spacing = 2
-  
-      itemPrice.textColor = .gray
-      itemPrice.font = UIFont.systemFont(ofSize: 20)
-
-      quantity.textColor = .gray
-      quantity.textAlignment = .center
-      quantity.font = UIFont.systemFont(ofSize: 20)
-
-      total.textColor = .gray
-      total.textAlignment = .right
-      total.font = UIFont.systemFont(ofSize: 20)
-
-      priceStack.addArrangedSubview(itemPrice)
-      priceStack.addArrangedSubview(quantity)
-      priceStack.addArrangedSubview(total)
-      
+      priceStack.addArrangedSubview(priceLabel)
+      priceStack.addArrangedSubview(quantityLabel)
+      priceStack.addArrangedSubview(totalLabel)
       stackView.addArrangedSubview(priceStack)
     }
   }

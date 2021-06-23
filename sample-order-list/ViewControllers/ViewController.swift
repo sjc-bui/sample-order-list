@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
 
   var tableView: UITableView!
   var sections: [String] = ["", "きしめんめん家", "かつ家", ""]
@@ -114,17 +114,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     if indexPath.section == 1 {
       if indexPath.row == meat.count - 1 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as! SubTotalCell
-        cell.titleLabel.text = "小計"
-        cell.subLabel.text = "￥\(5 * 500 * (meat.count - 1))"
+        cell.title = "小計"
+        cell.price = "￥\(5 * 500 * (meat.count - 1))"
         cell.selectionStyle = .none
         return cell
       } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
-        cell.titleLabel.text = meat[indexPath.row]
+        cell.title = meat[indexPath.row]
         cell.setup(names: meatOptions[indexPath.row])
-        cell.itemPrice.text = "￥\(500)"
-        cell.quantity.text = "\(5)点"
-        cell.total.text = "￥\(5 * 500)"
+        cell.price = "￥\(500)"
+        cell.quantity = "\(5)点"
+        cell.total = "￥\(5 * 500)"
         cell.completion = {
           print("`meat \(indexPath.section) \(indexPath.row)`")
         }
@@ -134,17 +134,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     } else if indexPath.section == 2 {
       if indexPath.row == noodle.count - 1 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as! SubTotalCell
-        cell.titleLabel.text = "小計"
-        cell.subLabel.text = "￥\(10 * 1500 * (noodle.count - 1))"
+        cell.title = "小計"
+        cell.price = "￥\(10 * 1500 * (noodle.count - 1))"
         cell.selectionStyle = .none
         return cell
       } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
-        cell.titleLabel.text = noodle[indexPath.row]
+        cell.title = noodle[indexPath.row]
         cell.setup(names: noodleOpt[indexPath.row])
-        cell.itemPrice.text = "￥\(1500)"
-        cell.quantity.text = "\(10)点"
-        cell.total.text = "￥\(10 * 1500)"
+        cell.price = "￥\(1500)"
+        cell.quantity = "\(10)点"
+        cell.total = "￥\(10 * 1500)"
         cell.completion = {
           print("`noodle` \(indexPath.section) \(indexPath.row)")
         }
@@ -175,7 +175,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let cell = tableView.dequeueReusableCell(withIdentifier: "header") as! HeaderCell
     cell.backgroundColor = .systemGroupedBackground
-    cell.titleLabel.text = sections[section]
+    cell.title = sections[section]
     return cell
   }
 
