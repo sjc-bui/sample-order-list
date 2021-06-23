@@ -16,7 +16,7 @@ class HeaderCell: BaseViewCell {
   }
 
   private let titleLabel: PaddingLabel = {
-    let label = PaddingLabel(withInsets: 4, 8, 4, 8)
+    let label = PaddingLabel()
     label.textColor = .white
     label.layer.backgroundColor = UIColor.black.withAlphaComponent(0.2).cgColor
     label.layer.cornerRadius = 18

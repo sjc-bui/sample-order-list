@@ -14,7 +14,10 @@ class PaddingLabel: UILabel {
   var bottomInset: CGFloat
   var rightInset: CGFloat
 
-  public init(withInsets top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
+  public init(withInsets top: CGFloat = 4.0,
+              _ left: CGFloat = 8.0,
+              _ bottom: CGFloat = 4.0,
+              _ right: CGFloat = 8.0) {
     self.topInset = top
     self.leftInset = left
     self.bottomInset = bottom

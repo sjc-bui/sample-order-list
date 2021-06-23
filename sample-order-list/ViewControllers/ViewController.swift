@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: BaseViewController {
 
-  var tableView: UITableView!
   var sections: [String] = ["", "きしめんめん家", "かつ家", ""]
   var meat   = ["1　とんかつ定食", "2　唐揚げ定食", ""]
   var noodle = ["27　きしめん", ""]
@@ -19,31 +18,26 @@ class ViewController: BaseViewController {
   var noodleOpt = [["白ごはん","麺大盛"],
                    []]
   var userInfo = "住所："
+  
+  fileprivate lazy var tableView: UITableView = {
+    let tableView = UITableView(frame: .zero, style: .grouped)
+//    tableView.separatorStyle = .none
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "c")
+    tableView.registerReuseCell(ItemCell.self)
+    tableView.registerReuseCell(SubTotalCell.self)
+    tableView.registerReuseCell(HeaderCell.self)
+    tableView.registerReuseCell(UserInfoCell.self)
+    return tableView
+  }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .white
-
-    tableView = UITableView(frame: .zero, style: .grouped)
-    tableView.delegate = self
-    tableView.dataSource = self
-
     tableView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(tableView)
-
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "c")
-    tableView.register(ItemCell.self, forCellReuseIdentifier: "cell")
-    tableView.register(SubTotalCell.self, forCellReuseIdentifier: "sub")
-    tableView.register(HeaderCell.self, forCellReuseIdentifier: "header")
-    tableView.register(UserInfoCell.self, forCellReuseIdentifier: "user")
-
-    NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.topAnchor),
-      tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-      tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-    ])
-
+    self.view.backgroundColor = UIColor.separator
+    layoutTableView()
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
       self.meat.insert("3　チキン南蛮定食", at: 1)
       self.meatOptions.insert(["ご飯大盛"], at: 1)
@@ -57,43 +51,14 @@ class ViewController: BaseViewController {
     }
   }
 
-  let scrollView: UIScrollView = {
-      let scrollView = UIScrollView()
-
-      scrollView.translatesAutoresizingMaskIntoConstraints = false
-      return scrollView
-  }()
-
-  let scrollViewContainer: UIStackView = {
-      let view = UIStackView()
-
-      view.axis = .vertical
-      view.spacing = 10
-
-      view.translatesAutoresizingMaskIntoConstraints = false
-      return view
-  }()
-
-  let redView: UIView = {
-      let view = UIView()
-      view.heightAnchor.constraint(equalToConstant: 500).isActive = true
-      view.backgroundColor = .red
-      return view
-  }()
-
-  let blueView: UIView = {
-      let view = UIView()
-      view.heightAnchor.constraint(equalToConstant: 200).isActive = true
-      view.backgroundColor = .blue
-      return view
-  }()
-
-  let greenView: UIView = {
-      let view = UIView()
-      view.heightAnchor.constraint(equalToConstant: 300).isActive = true
-      view.backgroundColor = .green
-      return view
-  }()
+  func layoutTableView() {
+    NSLayoutConstraint.activate([
+      tableView.topAnchor.constraint(equalTo: view.topAnchor),
+      tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+      tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+    ])
+  }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -113,13 +78,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 1 {
       if indexPath.row == meat.count - 1 {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as! SubTotalCell
+        let cell: SubTotalCell = tableView.dequeueReusableCell(for: indexPath)
         cell.title = "小計"
         cell.price = "￥\(5 * 500 * (meat.count - 1))"
         cell.selectionStyle = .none
         return cell
       } else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
+        let cell: ItemCell = tableView.dequeueReusableCell(for: indexPath)
         cell.title = meat[indexPath.row]
         cell.setup(names: meatOptions[indexPath.row])
         cell.price = "￥\(500)"
@@ -133,13 +98,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
       }
     } else if indexPath.section == 2 {
       if indexPath.row == noodle.count - 1 {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as! SubTotalCell
+        let cell: SubTotalCell = tableView.dequeueReusableCell(for: indexPath)
         cell.title = "小計"
         cell.price = "￥\(10 * 1500 * (noodle.count - 1))"
         cell.selectionStyle = .none
         return cell
       } else {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
+        let cell: ItemCell = tableView.dequeueReusableCell(for: indexPath)
         cell.title = noodle[indexPath.row]
         cell.setup(names: noodleOpt[indexPath.row])
         cell.price = "￥\(1500)"
@@ -152,7 +117,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
       }
     } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "user", for: indexPath) as! UserInfoCell
+      let cell: UserInfoCell = tableView.dequeueReusableCell(for: indexPath)
       cell.label.text = userInfo
       cell.callBack = {
         cell.label.text = "button is clicked."
@@ -173,7 +138,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "header") as! HeaderCell
+    let cell: HeaderCell = tableView.dequeueReusableCell()
     cell.backgroundColor = .systemGroupedBackground
     cell.title = sections[section]
     return cell

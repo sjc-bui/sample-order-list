@@ -8,6 +8,12 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = .white
+  }
+  
   deinit {
     print("\(type(of: self)) deinited.")
   }

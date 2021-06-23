@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class BaseViewCell: UITableViewCell {
+open class BaseViewCell: UITableViewCell, Reusable {
 
   override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
