@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E2866C82682BC49001E78B8 /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2866C72682BC49001E78B8 /* UserInfoCell.swift */; };
+		2E2866CC2682D681001E78B8 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2866CB2682D681001E78B8 /* PaddingLabel.swift */; };
 		2ECFD3CB268183B60078E53D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECFD3CA268183B60078E53D /* AppDelegate.swift */; };
 		2ECFD3CD268183B60078E53D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECFD3CC268183B60078E53D /* SceneDelegate.swift */; };
 		2ECFD3CF268183B60078E53D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECFD3CE268183B60078E53D /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		2E2866C72682BC49001E78B8 /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
+		2E2866CB2682D681001E78B8 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		2ECFD3C7268183B60078E53D /* sample-order-list.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sample-order-list.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECFD3CA268183B60078E53D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2ECFD3CC268183B60078E53D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				2ECFD3FE2681B1260078E53D /* HeaderCell.swift */,
 				2ECFD4002681C6960078E53D /* MenuViewController.swift */,
 				2E2866C72682BC49001E78B8 /* UserInfoCell.swift */,
+				2E2866CB2682D681001E78B8 /* PaddingLabel.swift */,
 			);
 			path = "sample-order-list";
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				2ECFD3CF268183B60078E53D /* ViewController.swift in Sources */,
 				2ECFD4012681C6960078E53D /* MenuViewController.swift in Sources */,
 				2ECFD3CB268183B60078E53D /* AppDelegate.swift in Sources */,
+				2E2866CC2682D681001E78B8 /* PaddingLabel.swift in Sources */,
 				2ECFD3FF2681B1260078E53D /* HeaderCell.swift in Sources */,
 				2ECFD3CD268183B60078E53D /* SceneDelegate.swift in Sources */,
 			);

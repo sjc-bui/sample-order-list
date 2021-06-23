@@ -45,7 +45,7 @@ class ItemCell: UITableViewCell {
     button.titleLabel?.textColor = .white
     button.backgroundColor = .systemBlue
     button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: .regular)
-    button.layer.cornerRadius = 2.0
+    button.layer.cornerRadius = 15
     button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
     stackView.axis = .vertical

@@ -9,8 +9,7 @@ import UIKit
 
 class HeaderCell: UITableViewCell {
 
-  let priceStack = UIStackView()
-  let titleLabel = UILabel()
+  let titleLabel = PaddingLabel(withInsets: 8, 8, 8, 8)
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,22 +27,17 @@ class HeaderCell: UITableViewCell {
   }
 
   func commonInit() {
-    priceStack.axis = .horizontal
-    priceStack.distribution = .fill
-    priceStack.alignment = .leading
-    priceStack.spacing = 2
-
     titleLabel.textColor = .gray
+    titleLabel.layer.backgroundColor = UIColor.black.withAlphaComponent(0.14).cgColor
+    titleLabel.layer.cornerRadius = 16
     titleLabel.font = UIFont.systemFont(ofSize: 20)
 
-    priceStack.addArrangedSubview(titleLabel)
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    addSubview(titleLabel)
 
-    priceStack.translatesAutoresizingMaskIntoConstraints = false
-    addSubview(priceStack)
-
-    priceStack.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-    priceStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-    priceStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-    priceStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+    titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 1).isActive = true
+    titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+    titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+    titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3).isActive = true
   }
 }
