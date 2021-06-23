@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
   var tableView: UITableView!
-  var sections: [String] = ["きしめん家", "とんかつ家"]
+  var sections: [String] = ["", "きしめん家", "とんかつ家", ""]
   var meat   = ["1　とんかつ定食", "2　唐揚げ定食", ""]
   var noodle = ["27　きしめん", ""]
   var meatOptions = [["みそ", "ご飯大盛り（+50）", "キャベツとカツを別々に"],
@@ -21,63 +21,37 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    
-    let innerView = UIView()
+
     tableView = UITableView(frame: .zero, style: .grouped)
     tableView.delegate = self
     tableView.dataSource = self
 
-    view.addSubview(scrollView)
-    scrollView.addSubview(scrollViewContainer)
-    scrollViewContainer.addArrangedSubview(innerView)
-    scrollViewContainer.addArrangedSubview(tableView)
-    scrollViewContainer.addArrangedSubview(greenView)
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(tableView)
 
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "c")
     tableView.register(ItemCell.self, forCellReuseIdentifier: "cell")
     tableView.register(SubTotalCell.self, forCellReuseIdentifier: "sub")
     tableView.register(HeaderCell.self, forCellReuseIdentifier: "header")
 
-    scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-
-    scrollViewContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-    scrollViewContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-    scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-    scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-    scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-
-    innerView.translatesAutoresizingMaskIntoConstraints = false
-    innerView.backgroundColor = .systemBlue
     NSLayoutConstraint.activate([
-      innerView.topAnchor.constraint(equalTo: scrollViewContainer.topAnchor),
-      innerView.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor),
-      innerView.rightAnchor.constraint(equalTo: scrollViewContainer.rightAnchor),
-      innerView.heightAnchor.constraint(equalToConstant: 150),
-
-      tableView.topAnchor.constraint(equalTo: innerView.bottomAnchor),
-      tableView.rightAnchor.constraint(equalTo: scrollViewContainer.rightAnchor),
-      tableView.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor),
-      tableView.heightAnchor.constraint(equalToConstant: 600)
+      tableView.topAnchor.constraint(equalTo: view.topAnchor),
+      tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+      tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
 
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//      self.meat.remove(at: 0)
-//      self.meatOptions.remove(at: 0)
-//      self.tableView.reloadData()
-//    }
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
-//      self.noodle.insert("3　タンメン", at: 1)
-//      self.noodleOpt.insert(["ご飯大"], at: 1)
-//      self.tableView.reloadData()
-//    }
-  }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+      self.meat.insert("3　チキン南蛮定食", at: 1)
+      self.meatOptions.insert(["ご飯大盛"], at: 1)
+      self.tableView.reloadData()
 
-  override func viewDidAppear(_ animated: Bool) {
-    print("TableView height: \(tableView.contentSize.height)")
-    tableView.isScrollEnabled = false;
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        self.noodle.insert("3　タンメン", at: 1)
+        self.noodleOpt.insert(["ご飯大"], at: 1)
+        self.tableView.reloadData()
+      }
+    }
   }
 
   let scrollView: UIScrollView = {
@@ -125,15 +99,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if section == 0 {
+    if section == 1 {
       return meat.count
+    } else if section == 2 {
+      return noodle.count
     }
-    return noodle.count
+    return 1
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell(style: .default, reuseIdentifier: "c")
-    if indexPath.section == 0 {
+    if indexPath.section == 1 {
       if indexPath.row == meat.count - 1 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as! SubTotalCell
         cell.titleLabel.text = "小計"
@@ -148,7 +124,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.total.text = "￥\(5 * 500)"
         return cell
       }
-    } else if indexPath.section == 1 {
+    } else if indexPath.section == 2 {
       if indexPath.row == noodle.count - 1 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as! SubTotalCell
         cell.titleLabel.text = "小計"
@@ -183,5 +159,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     cell.titleLabel.text = sections[section]
     cell.subLabel.text = "編集"
     return cell
+  }
+
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return section == 0 || section == (sections.count - 1) ? 0 : 40
   }
 }
