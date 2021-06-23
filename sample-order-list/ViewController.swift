@@ -8,8 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+
   var tableView: UITableView!
-  var sections: [String] = ["", "きしめん家", "とんかつ家", ""]
+  var sections: [String] = ["", "きしめんめん家", "かつ家", ""]
   var meat   = ["1　とんかつ定食", "2　唐揚げ定食", ""]
   var noodle = ["27　きしめん", ""]
   var meatOptions = [["みそ", "ご飯大盛り（+50）", "キャベツとカツを別々に"],
