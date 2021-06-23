@@ -81,7 +81,16 @@ class ItemCell: BaseViewCell {
     return stack
   }()
 
-  let button = UIButton()
+  private let button: UIButton = {
+    let button = UIButton()
+    button.setTitle("編集", for: UIControl.State.normal)
+    button.titleLabel?.textColor = .white
+    button.backgroundColor = .systemBlue
+    button.titleLabel?.font = UIFont.systemFont(ofSize: 13.0, weight: .regular)
+    button.layer.cornerRadius = 15
+    button.addRightIcon(image: UIImage(named: "see_more") ?? UIImage())
+    return button
+  }()
 
   override func initialize() {
     commonInit()
@@ -99,12 +108,6 @@ class ItemCell: BaseViewCell {
 
     addSubview(titleLabel)
     addSubview(button)
-
-    button.setTitle("編集", for: UIControl.State.normal)
-    button.titleLabel?.textColor = .white
-    button.backgroundColor = .systemBlue
-    button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: .regular)
-    button.layer.cornerRadius = 15
     button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
     stackView.translatesAutoresizingMaskIntoConstraints = false
