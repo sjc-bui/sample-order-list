@@ -8,10 +8,9 @@
 import UIKit
 
 class HeaderCell: UITableViewCell {
-  
+
   let priceStack = UIStackView()
   let titleLabel = UILabel()
-  let subLabel = UILabel()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,22 +21,22 @@ class HeaderCell: UITableViewCell {
     super.init(coder: coder)
     commonInit()
   }
+  
+  var completion: (() -> Void)? = nil
+  @objc func buttonTapped() {
+    completion?()
+  }
 
   func commonInit() {
     priceStack.axis = .horizontal
-    priceStack.distribution = .fillEqually
+    priceStack.distribution = .fill
     priceStack.alignment = .leading
     priceStack.spacing = 2
 
     titleLabel.textColor = .gray
     titleLabel.font = UIFont.systemFont(ofSize: 20)
 
-    subLabel.textColor = .gray
-    subLabel.textAlignment = .right
-    subLabel.font = UIFont.systemFont(ofSize: 20)
-
     priceStack.addArrangedSubview(titleLabel)
-    priceStack.addArrangedSubview(subLabel)
 
     priceStack.translatesAutoresizingMaskIntoConstraints = false
     addSubview(priceStack)

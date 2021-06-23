@@ -17,6 +17,7 @@ class ViewController: UIViewController {
                      []]
   var noodleOpt = [["白ごはん","麺大盛"],
                    []]
+  var userInfo = "住所："
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
     tableView.register(ItemCell.self, forCellReuseIdentifier: "cell")
     tableView.register(SubTotalCell.self, forCellReuseIdentifier: "sub")
     tableView.register(HeaderCell.self, forCellReuseIdentifier: "header")
+    tableView.register(UserInfoCell.self, forCellReuseIdentifier: "user")
 
     NSLayoutConstraint.activate([
       tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -41,7 +43,7 @@ class ViewController: UIViewController {
       tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
 
-    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
       self.meat.insert("3　チキン南蛮定食", at: 1)
       self.meatOptions.insert(["ご飯大盛"], at: 1)
       self.tableView.reloadData()
@@ -108,12 +110,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .default, reuseIdentifier: "c")
     if indexPath.section == 1 {
       if indexPath.row == meat.count - 1 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as! SubTotalCell
         cell.titleLabel.text = "小計"
         cell.subLabel.text = "￥\(5 * 500 * (meat.count - 1))"
+        cell.selectionStyle = .none
         return cell
       } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
@@ -122,6 +124,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.itemPrice.text = "￥\(500)"
         cell.quantity.text = "\(5)点"
         cell.total.text = "￥\(5 * 500)"
+        cell.completion = {
+          print("`meat \(indexPath.section) \(indexPath.row)`")
+        }
+        cell.selectionStyle = .none
         return cell
       }
     } else if indexPath.section == 2 {
@@ -129,6 +135,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sub", for: indexPath) as! SubTotalCell
         cell.titleLabel.text = "小計"
         cell.subLabel.text = "￥\(10 * 1500 * (noodle.count - 1))"
+        cell.selectionStyle = .none
         return cell
       } else {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemCell
@@ -137,16 +144,27 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.itemPrice.text = "￥\(1500)"
         cell.quantity.text = "\(10)点"
         cell.total.text = "￥\(10 * 1500)"
+        cell.completion = {
+          print("`noodle` \(indexPath.section) \(indexPath.row)")
+        }
+        cell.selectionStyle = .none
         return cell
       }
+    } else {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "user", for: indexPath) as! UserInfoCell
+      cell.label.text = userInfo
+      cell.callBack = {
+        cell.label.text = "button is clicked."
+      }
+      cell.selectionStyle = .none
+      return cell
     }
-    return cell
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    let menuView = MenuViewController()
-    self.present(menuView, animated: true, completion: nil)
+//    let menuView = MenuViewController()
+//    self.present(menuView, animated: true, completion: nil)
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -157,7 +175,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "header") as! HeaderCell
     cell.backgroundColor = .systemGroupedBackground
     cell.titleLabel.text = sections[section]
-    cell.subLabel.text = "編集"
     return cell
   }
 

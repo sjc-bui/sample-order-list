@@ -14,6 +14,8 @@ class ItemCell: UITableViewCell {
   let itemPrice = UILabel()
   let quantity = UILabel()
   let total = UILabel()
+  
+  let button = UIButton()
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
       super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,37 +27,59 @@ class ItemCell: UITableViewCell {
       commonInit()
   }
 
+  var completion: (() -> Void)? = nil
+  @objc func buttonTapped() {
+    completion?()
+  }
+
   func commonInit() {
-      titleLabel.translatesAutoresizingMaskIntoConstraints = false
-      titleLabel.font = UIFont.systemFont(ofSize: 20)
-      addSubview(titleLabel)
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    button.translatesAutoresizingMaskIntoConstraints = false
+    titleLabel.font = UIFont.systemFont(ofSize: 20)
+    contentView.isUserInteractionEnabled = true
 
-      stackView.axis = .vertical
-      stackView.distribution = .fillEqually
-      stackView.alignment = .fill
-      stackView.spacing = 2
-      stackView.translatesAutoresizingMaskIntoConstraints = false
-      addSubview(stackView)
+    addSubview(titleLabel)
+    addSubview(button)
 
-      titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-      titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-      titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-      titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    button.setTitle("編集", for: UIControl.State.normal)
+    button.titleLabel?.textColor = .white
+    button.backgroundColor = .systemBlue
+    button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+    button.layer.cornerRadius = 2.0
+    button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
-      stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-      stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-      stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-      stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+    stackView.axis = .vertical
+    stackView.distribution = .fillEqually
+    stackView.alignment = .fill
+    stackView.spacing = 2
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    addSubview(stackView)
+
+    titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+    titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+    titleLabel.trailingAnchor.constraint(equalTo: button.leadingAnchor).isActive = true
+    titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
+    button.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+    button.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
+    button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+    button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+    button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+
+    stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+    stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+    stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+    stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
   }
 
   func setup(names: [String]) {
     stackView.arrangedSubviews.forEach { stackView.removeArrangedSubview($0); $0.removeFromSuperview() }
     names.forEach {
-        let label = UILabel()
-        label.textColor = .gray
-        label.text = "　\($0)"
-        label.font = UIFont.systemFont(ofSize: 20)
-        stackView.addArrangedSubview(label)
+      let label = UILabel()
+      label.textColor = .gray
+      label.text = "　\($0)"
+      label.font = UIFont.systemFont(ofSize: 20)
+      stackView.addArrangedSubview(label)
     }
 
     if !names.isEmpty {
