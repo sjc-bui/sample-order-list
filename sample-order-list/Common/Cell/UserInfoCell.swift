@@ -33,22 +33,23 @@ class UserInfoCell: BaseViewCell {
   }
 
   func commonInit() {
-    button.translatesAutoresizingMaskIntoConstraints = false
     contentView.addSubview(button)
     button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
 
-    button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-    button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
-    button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-    button.widthAnchor.constraint(equalToConstant: 100).isActive = true
+    button.snp.makeConstraints { make in
+      make.top.left.equalTo(contentView).offset(10)
+      make.bottom.equalTo(contentView).offset(-10)
+      make.width.equalTo(100)
+    }
 
-    label.translatesAutoresizingMaskIntoConstraints = false
     contentView.addSubview(label)
-    label.leadingAnchor.constraint(equalTo: button.trailingAnchor, constant: 2).isActive = true
-    label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-    label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
-    label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
-    label.backgroundColor = .lightGray
+
+    label.snp.makeConstraints { make in
+      make.left.equalTo(button.snp.right).offset(2)
+      make.top.equalTo(contentView.snp.top).offset(10)
+      make.right.equalTo(contentView.snp.right).offset(-10)
+      make.bottom.equalTo(contentView.snp.bottom).offset(-10)
+    }
   }
 
   @objc func didTapButton() {

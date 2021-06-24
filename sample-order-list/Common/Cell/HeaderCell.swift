@@ -34,12 +34,14 @@ class HeaderCell: BaseViewCell {
   }
 
   func commonInit() {
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
     contentView.addSubview(titleLabel)
 
     titleLabel.sizeToFit()
-    titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 3).isActive = true
-    titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-    titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -3).isActive = true
+
+    titleLabel.snp.makeConstraints { make in
+      make.top.equalToSuperview().offset(3)
+      make.bottom.equalToSuperview().offset(-3)
+      make.left.equalToSuperview().offset(20)
+    }
   }
 }

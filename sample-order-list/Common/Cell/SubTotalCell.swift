@@ -50,14 +50,15 @@ class SubTotalCell: BaseViewCell {
   }
 
   func commonInit() {
-    priceStack.translatesAutoresizingMaskIntoConstraints = false
     addSubview(priceStack)
     priceStack.addArrangedSubview(titleLabel)
     priceStack.addArrangedSubview(priceLabel)
 
-    priceStack.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-    priceStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-    priceStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-    priceStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+    priceStack.snp.makeConstraints { make in
+      make.top.equalToSuperview().offset(10)
+      make.bottom.equalToSuperview().offset(-10)
+      make.left.equalToSuperview().offset(20)
+      make.right.equalToSuperview().offset(-10)
+    }
   }
 }

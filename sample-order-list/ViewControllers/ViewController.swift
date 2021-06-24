@@ -34,7 +34,6 @@ class ViewController: BaseViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(tableView)
     self.view.backgroundColor = UIColor.separator
     layoutTableView()
@@ -52,12 +51,9 @@ class ViewController: BaseViewController {
   }
 
   func layoutTableView() {
-    NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.topAnchor),
-      tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-      tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-    ])
+    tableView.snp.makeConstraints { make in
+      make.edges.equalTo(self.view)
+    }
   }
 }
 

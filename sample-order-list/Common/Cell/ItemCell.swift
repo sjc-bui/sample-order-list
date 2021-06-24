@@ -36,14 +36,14 @@ class ItemCell: BaseViewCell {
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.numberOfLines = 1
-    label.font = UIFont.systemFont(ofSize: 20)
+    label.font = UIFont.systemFont(ofSize: 18)
     return label
   }()
 
   private let priceLabel: UILabel = {
     let label = UILabel()
     label.textColor = .gray
-    label.font = UIFont.systemFont(ofSize: 20)
+    label.font = UIFont.systemFont(ofSize: 18)
     return label
   }()
 
@@ -51,7 +51,7 @@ class ItemCell: BaseViewCell {
     let label = UILabel()
     label.textColor = .gray
     label.textAlignment = .center
-    label.font = UIFont.systemFont(ofSize: 20)
+    label.font = UIFont.systemFont(ofSize: 18)
     return label
   }()
   
@@ -59,7 +59,7 @@ class ItemCell: BaseViewCell {
     let label = UILabel()
     label.textColor = .gray
     label.textAlignment = .right
-    label.font = UIFont.systemFont(ofSize: 20)
+    label.font = UIFont.systemFont(ofSize: 18)
     return label
   }()
 
@@ -102,32 +102,36 @@ class ItemCell: BaseViewCell {
   }
 
   func commonInit() {
-    titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    button.translatesAutoresizingMaskIntoConstraints = false
     contentView.isUserInteractionEnabled = true
 
     addSubview(titleLabel)
     addSubview(button)
     button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
-    stackView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(stackView)
 
-    titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-    titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-    titleLabel.trailingAnchor.constraint(equalTo: button.leadingAnchor).isActive = true
-    titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    titleLabel.snp.makeConstraints { make in
+      make.top.equalToSuperview().offset(5)
+      make.left.equalToSuperview().offset(20)
+      make.right.equalTo(button.snp.left)
+      make.bottom.equalTo(stackView.snp.top)
+      make.height.equalTo(30)
+    }
 
-    button.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
-    button.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
-    button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-    button.widthAnchor.constraint(equalToConstant: 80).isActive = true
-    button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    button.snp.makeConstraints { make in
+      make.top.equalToSuperview().offset(5)
+      make.left.equalTo(titleLabel.snp.right)
+      make.right.equalToSuperview().offset(-10)
+      make.width.equalTo(80)
+      make.height.equalTo(30)
+    }
 
-    stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-    stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-    stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-    stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+    stackView.snp.makeConstraints { make in
+      make.top.equalTo(titleLabel.snp.bottom)
+      make.left.equalToSuperview().offset(20)
+      make.bottom.equalToSuperview()
+      make.right.equalToSuperview().offset(-10)
+    }
   }
 
   func setup(names: [String]) {
