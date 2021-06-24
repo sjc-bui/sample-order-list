@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol ItemCellDelegate: AnyObject {
+  func editButtonClicked(id: String?)
+}
+
 class ItemCell: BaseViewCell {
+  weak var delegate: ItemCellDelegate?
 
   var title: String? {
     didSet {
@@ -32,7 +37,9 @@ class ItemCell: BaseViewCell {
       totalLabel.text = total
     }
   }
-  
+
+  private var itemId: String?
+
   private let titleLabel: UILabel = {
     let label = UILabel()
     label.numberOfLines = 1
@@ -88,7 +95,7 @@ class ItemCell: BaseViewCell {
     button.backgroundColor = .systemBlue
     button.titleLabel?.font = UIFont.systemFont(ofSize: 13.0, weight: .regular)
     button.layer.cornerRadius = 15
-    button.addRightIcon(image: UIImage(named: "see_more") ?? UIImage())
+//    button.addRightIcon(image: UIImage(named: "see_more") ?? UIImage())
     return button
   }()
 
@@ -96,9 +103,12 @@ class ItemCell: BaseViewCell {
     commonInit()
   }
 
-  var completion: (() -> Void)? = nil
   @objc func buttonTapped() {
-    completion?()
+    delegate?.editButtonClicked(id: itemId)
+  }
+
+  func config(id: String) {
+    self.itemId = id
   }
 
   func commonInit() {

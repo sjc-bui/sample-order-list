@@ -35,6 +35,10 @@ class ViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(tableView)
+
+    let nib = UINib(nibName: "UserInfoXib", bundle: nil)
+    tableView.register(nib, forCellReuseIdentifier: "xibCell")
+
     self.view.backgroundColor = UIColor.separator
     layoutTableView()
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -54,6 +58,18 @@ class ViewController: BaseViewController {
     tableView.snp.makeConstraints { make in
       make.edges.equalTo(self.view)
     }
+  }
+}
+
+extension ViewController: UserInfoXibCellDelegate {
+  func didClickedButton(tag: Int?, textField: String?) {
+    print("This is button tag from delegate: \(tag ?? 000) & text field: \(textField ?? "nil")")
+  }
+}
+
+extension ViewController: ItemCellDelegate {
+  func editButtonClicked(id: String?) {
+    print("ID = \(id ?? "Nil")")
   }
 }
 
@@ -86,9 +102,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.price = "￥\(500)"
         cell.quantity = "\(5)点"
         cell.total = "￥\(5 * 500)"
-        cell.completion = {
-          print("`meat \(indexPath.section) \(indexPath.row)`")
-        }
+        cell.delegate = self
+        cell.config(id: "\(indexPath.section)\(indexPath.row)")
         cell.selectionStyle = .none
         return cell
       }
@@ -106,12 +121,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.price = "￥\(1500)"
         cell.quantity = "\(10)点"
         cell.total = "￥\(10 * 1500)"
-        cell.completion = {
-          print("`noodle` \(indexPath.section) \(indexPath.row)")
-        }
+        cell.delegate = self
+        cell.config(id: "\(indexPath.section)\(indexPath.row)")
         cell.selectionStyle = .none
         return cell
       }
+    } else if indexPath.section == (sections.count - 1) {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "xibCell", for: indexPath) as! UserInfoXibCell
+      cell.xibCellLabel.text = "This is label in XIB view."
+      cell.DescriptionLabel.text = "Then setup up the constraints within the cell – and heres the important part, which I dont see mentioned anywhere."
+      cell.delegate = self
+      return cell
     } else {
       let cell: UserInfoCell = tableView.dequeueReusableCell(for: indexPath)
       cell.label.text = userInfo

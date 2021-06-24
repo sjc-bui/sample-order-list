@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="xibCell" rowHeight="297" id="ion-9E-hl3" customClass="UserInfoXibCell" customModule="sample_order_list" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="698" height="297"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ion-9E-hl3" id="QWj-9f-yz3">
+                <rect key="frame" x="0.0" y="0.0" width="698" height="297"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vvl-0o-7LM">
+                        <rect key="frame" x="20" y="19" width="51.5" height="132.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電話番号" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxk-Ee-T8f">
+                                <rect key="frame" x="0.0" y="0.0" width="51.5" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-Bx-dua">
+                                <rect key="frame" x="0.0" y="51" width="51.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crx-Nc-npd">
+                                <rect key="frame" x="0.0" y="81.5" width="51.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ナゴヤ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDF-e2-L8n">
+                                <rect key="frame" x="0.0" y="112" width="51.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbn-zW-p7T">
+                        <rect key="frame" x="585" y="17" width="93" height="30"/>
+                        <color key="backgroundColor" name="AccentColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="93" id="CgY-c3-1PZ"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="編集"/>
+                        <connections>
+                            <action selector="EditClicked:" destination="ion-9E-hl3" eventType="touchUpInside" id="Nck-2T-pa7"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu1-2Z-nXe">
+                        <rect key="frame" x="20" y="183" width="658" height="95"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3m6-Un-TbO">
+                        <rect key="frame" x="585" y="70" width="93" height="35"/>
+                        <color key="backgroundColor" name="AccentColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="93" id="Hqa-DD-2Vh"/>
+                            <constraint firstAttribute="height" constant="35" id="R3u-aZ-Saw"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="Btn2:" destination="ion-9E-hl3" eventType="touchUpInside" id="9kT-lK-7gH"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Vvl-0o-7LM" firstAttribute="leading" secondItem="QWj-9f-yz3" secondAttribute="leading" constant="20" symbolic="YES" id="1A9-iO-Dun"/>
+                    <constraint firstItem="3m6-Un-TbO" firstAttribute="leading" secondItem="Vvl-0o-7LM" secondAttribute="trailing" constant="513.5" id="ADb-e6-LPa"/>
+                    <constraint firstItem="Vvl-0o-7LM" firstAttribute="top" secondItem="QWj-9f-yz3" secondAttribute="top" constant="19" id="CBE-vi-7xo"/>
+                    <constraint firstItem="Rbn-zW-p7T" firstAttribute="leading" secondItem="Vvl-0o-7LM" secondAttribute="trailing" constant="513.5" id="D6T-Xu-HKR"/>
+                    <constraint firstItem="eu1-2Z-nXe" firstAttribute="top" secondItem="3m6-Un-TbO" secondAttribute="bottom" constant="78" id="Tnz-Oe-ivr"/>
+                    <constraint firstAttribute="trailing" secondItem="eu1-2Z-nXe" secondAttribute="trailing" constant="20" symbolic="YES" id="Xw5-Aw-Pni"/>
+                    <constraint firstItem="eu1-2Z-nXe" firstAttribute="top" secondItem="Vvl-0o-7LM" secondAttribute="bottom" constant="31.5" id="YHG-TS-zvL"/>
+                    <constraint firstAttribute="trailing" secondItem="Rbn-zW-p7T" secondAttribute="trailing" constant="20" symbolic="YES" id="Zaz-yl-Hhs"/>
+                    <constraint firstItem="Rbn-zW-p7T" firstAttribute="top" secondItem="QWj-9f-yz3" secondAttribute="top" constant="17" id="fjg-EM-3ly"/>
+                    <constraint firstAttribute="trailing" secondItem="3m6-Un-TbO" secondAttribute="trailing" constant="20" symbolic="YES" id="i1P-Xg-Lj2"/>
+                    <constraint firstItem="eu1-2Z-nXe" firstAttribute="leading" secondItem="QWj-9f-yz3" secondAttribute="leading" constant="20" symbolic="YES" id="mb3-SF-Lv1"/>
+                    <constraint firstAttribute="bottom" secondItem="eu1-2Z-nXe" secondAttribute="bottom" constant="19" id="uYc-yi-y6S"/>
+                    <constraint firstItem="3m6-Un-TbO" firstAttribute="top" secondItem="Rbn-zW-p7T" secondAttribute="bottom" constant="23" id="zDt-du-CqM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="DescriptionLabel" destination="eu1-2Z-nXe" id="XHH-YB-WtE"/>
+                <outlet property="name" destination="wDF-e2-L8n" id="NN9-G8-oe4"/>
+                <outlet property="nameLabel" destination="crx-Nc-npd" id="xYI-CM-OAc"/>
+                <outlet property="phone" destination="bs5-Bx-dua" id="hZP-N8-zgT"/>
+                <outlet property="xibCellLabel" destination="Bxk-Ee-T8f" id="BZB-j1-aOb"/>
+            </connections>
+            <point key="canvasLocation" x="-400.00000000000006" y="-77.34375"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
