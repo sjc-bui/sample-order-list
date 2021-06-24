@@ -5,41 +5,42 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="xibCell" rowHeight="297" id="ion-9E-hl3" customClass="UserInfoXibCell" customModule="sample_order_list" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="698" height="297"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="xibCell" rowHeight="509" id="ion-9E-hl3" customClass="UserInfoXibCell" customModule="sample_order_list" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="698" height="509"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ion-9E-hl3" id="QWj-9f-yz3">
-                <rect key="frame" x="0.0" y="0.0" width="698" height="297"/>
+                <rect key="frame" x="0.0" y="0.0" width="698" height="509"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Vvl-0o-7LM">
-                        <rect key="frame" x="20" y="19" width="51.5" height="132.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="Vvl-0o-7LM">
+                        <rect key="frame" x="20" y="19" width="113.5" height="235"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電話番号" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxk-Ee-T8f">
-                                <rect key="frame" x="0.0" y="0.0" width="51.5" height="41"/>
+                                <rect key="frame" x="0.0" y="0.0" width="113.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08000000000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-Bx-dua">
-                                <rect key="frame" x="0.0" y="51" width="51.5" height="20.5"/>
+                                <rect key="frame" x="0.0" y="71.5" width="113.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crx-Nc-npd">
-                                <rect key="frame" x="0.0" y="81.5" width="51.5" height="20.5"/>
+                                <rect key="frame" x="0.0" y="143" width="113.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ナゴヤ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDF-e2-L8n">
-                                <rect key="frame" x="0.0" y="112" width="51.5" height="20.5"/>
+                                <rect key="frame" x="0.0" y="214.5" width="113.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -58,12 +59,6 @@
                             <action selector="EditClicked:" destination="ion-9E-hl3" eventType="touchUpInside" id="Nck-2T-pa7"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eu1-2Z-nXe">
-                        <rect key="frame" x="20" y="183" width="658" height="95"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3m6-Un-TbO">
                         <rect key="frame" x="585" y="70" width="93" height="35"/>
                         <color key="backgroundColor" name="AccentColor"/>
@@ -77,36 +72,58 @@
                             <action selector="Btn2:" destination="ion-9E-hl3" eventType="touchUpInside" id="9kT-lK-7gH"/>
                         </connections>
                     </button>
+                    <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8SU-Ki-toW">
+                        <rect key="frame" x="109" y="404" width="480" height="61"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="480" id="H4Z-fD-5Zp"/>
+                            <constraint firstAttribute="height" constant="60" id="gWq-5m-GG1"/>
+                        </constraints>
+                        <segments>
+                            <segment title="今から"/>
+                            <segment title="何日の何時まで"/>
+                            <segment title="何日の何時以降"/>
+                            <segment title="何日の何時ごろ"/>
+                        </segments>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedSegmentTintColor" systemColor="systemRedColor"/>
+                        <connections>
+                            <action selector="segmentCtr:" destination="ion-9E-hl3" eventType="valueChanged" id="6tp-qv-Sqs"/>
+                        </connections>
+                    </segmentedControl>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Vvl-0o-7LM" firstAttribute="leading" secondItem="QWj-9f-yz3" secondAttribute="leading" constant="20" symbolic="YES" id="1A9-iO-Dun"/>
-                    <constraint firstItem="3m6-Un-TbO" firstAttribute="leading" secondItem="Vvl-0o-7LM" secondAttribute="trailing" constant="513.5" id="ADb-e6-LPa"/>
                     <constraint firstItem="Vvl-0o-7LM" firstAttribute="top" secondItem="QWj-9f-yz3" secondAttribute="top" constant="19" id="CBE-vi-7xo"/>
-                    <constraint firstItem="Rbn-zW-p7T" firstAttribute="leading" secondItem="Vvl-0o-7LM" secondAttribute="trailing" constant="513.5" id="D6T-Xu-HKR"/>
-                    <constraint firstItem="eu1-2Z-nXe" firstAttribute="top" secondItem="3m6-Un-TbO" secondAttribute="bottom" constant="78" id="Tnz-Oe-ivr"/>
-                    <constraint firstAttribute="trailing" secondItem="eu1-2Z-nXe" secondAttribute="trailing" constant="20" symbolic="YES" id="Xw5-Aw-Pni"/>
-                    <constraint firstItem="eu1-2Z-nXe" firstAttribute="top" secondItem="Vvl-0o-7LM" secondAttribute="bottom" constant="31.5" id="YHG-TS-zvL"/>
+                    <constraint firstItem="8SU-Ki-toW" firstAttribute="centerX" secondItem="QWj-9f-yz3" secondAttribute="centerX" id="SZ6-Tn-y6U"/>
+                    <constraint firstAttribute="bottom" secondItem="8SU-Ki-toW" secondAttribute="bottom" constant="45" id="U8e-9s-ElB"/>
+                    <constraint firstItem="8SU-Ki-toW" firstAttribute="top" secondItem="Vvl-0o-7LM" secondAttribute="bottom" constant="150" id="Ujt-Ts-mgN"/>
                     <constraint firstAttribute="trailing" secondItem="Rbn-zW-p7T" secondAttribute="trailing" constant="20" symbolic="YES" id="Zaz-yl-Hhs"/>
                     <constraint firstItem="Rbn-zW-p7T" firstAttribute="top" secondItem="QWj-9f-yz3" secondAttribute="top" constant="17" id="fjg-EM-3ly"/>
                     <constraint firstAttribute="trailing" secondItem="3m6-Un-TbO" secondAttribute="trailing" constant="20" symbolic="YES" id="i1P-Xg-Lj2"/>
-                    <constraint firstItem="eu1-2Z-nXe" firstAttribute="leading" secondItem="QWj-9f-yz3" secondAttribute="leading" constant="20" symbolic="YES" id="mb3-SF-Lv1"/>
-                    <constraint firstAttribute="bottom" secondItem="eu1-2Z-nXe" secondAttribute="bottom" constant="19" id="uYc-yi-y6S"/>
                     <constraint firstItem="3m6-Un-TbO" firstAttribute="top" secondItem="Rbn-zW-p7T" secondAttribute="bottom" constant="23" id="zDt-du-CqM"/>
+                    <constraint firstItem="3m6-Un-TbO" firstAttribute="leading" secondItem="Vvl-0o-7LM" secondAttribute="trailing" constant="451.5" id="zkm-Do-muv"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="DescriptionLabel" destination="eu1-2Z-nXe" id="XHH-YB-WtE"/>
                 <outlet property="name" destination="wDF-e2-L8n" id="NN9-G8-oe4"/>
                 <outlet property="nameLabel" destination="crx-Nc-npd" id="xYI-CM-OAc"/>
                 <outlet property="phone" destination="bs5-Bx-dua" id="hZP-N8-zgT"/>
+                <outlet property="segment" destination="8SU-Ki-toW" id="43f-fT-xVm"/>
                 <outlet property="xibCellLabel" destination="Bxk-Ee-T8f" id="BZB-j1-aOb"/>
             </connections>
-            <point key="canvasLocation" x="-400.00000000000006" y="-77.34375"/>
+            <point key="canvasLocation" x="-400.00000000000006" y="-6.3616071428571423"/>
         </tableViewCell>
     </objects>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

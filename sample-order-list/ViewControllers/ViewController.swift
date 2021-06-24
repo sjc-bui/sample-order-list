@@ -62,6 +62,10 @@ class ViewController: BaseViewController {
 }
 
 extension ViewController: UserInfoXibCellDelegate {
+  func segmentValueChanged(index: Int?) {
+    print("Segment control index = \(index ?? 999)")
+  }
+
   func didClickedButton(tag: Int?, textField: String?) {
     print("This is button tag from delegate: \(tag ?? 000) & text field: \(textField ?? "nil")")
   }
@@ -129,7 +133,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     } else if indexPath.section == (sections.count - 1) {
       let cell = tableView.dequeueReusableCell(withIdentifier: "xibCell", for: indexPath) as! UserInfoXibCell
       cell.xibCellLabel.text = "This is label in XIB view."
-      cell.DescriptionLabel.text = "Then setup up the constraints within the cell – and heres the important part, which I dont see mentioned anywhere."
       cell.delegate = self
       return cell
     } else {
